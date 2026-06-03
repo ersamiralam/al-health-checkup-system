@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MediPredict AI</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="logo">
+        ❤️ MediPredict
+    </div>
+
+    <ul>
+
+        <li class="active">🏥 Health Checkup</li>
+
+        <li>📊 Dashboard</li>
+
+        <li>📜 History</li>
+
+        <li>🥗 Prevention</li>
+
+        <li>💡 Health Tips</li>
+
+        <li>⚙ Settings</li>
+
+    </ul>
+
+</div>
+
+<div class="main">
+
+    <div class="header">
+
+        <h1>AI Health Checkup System</h1>
+
+        <p>
+            AI Powered Health Risk Prediction
+        </p>
+
+    </div>
+
+    <div class="glass-card">
+
+        <form action="/predict" method="POST">
+
+            <div class="grid">
+
+                <div>
+
+                    <label>Name</label>
+
+                    <input
+                        type="text"
+                        name="name"
+                        required
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Age</label>
+
+                    <input
+                        type="number"
+                        name="age"
+                        required
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Gender</label>
+
+                    <select name="gender">
+
+                        <option>Male</option>
+
+                        <option>Female</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label>Height (cm)</label>
+
+                    <input
+                        type="number"
+                        name="height"
+                        required
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Weight (kg)</label>
+
+                    <input
+                        type="number"
+                        name="weight"
+                        required
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Blood Pressure</label>
+
+                    <input
+                        type="number"
+                        name="bp"
+                        required
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Blood Sugar</label>
+
+                    <input
+                        type="number"
+                        name="sugar"
+                        required
+                    >
+
+                </div>
+
+                <div>
+
+                    <label>Smoking</label>
+
+                    <select name="smoking">
+
+                        <option>No</option>
+
+                        <option>Yes</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label>Alcohol</label>
+
+                    <select name="alcohol">
+
+                        <option>No</option>
+
+                        <option>Yes</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label>Exercise</label>
+
+                    <select name="exercise">
+
+                        <option>Yes</option>
+
+                        <option>No</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="predict-btn">
+                Generate Prediction
+            </button>
+
+        </form>
+
+    </div>
+
+    {% if result %}
+
+    <div class="result-section">
+
+        <div class="risk-card">
+
+            <h2>{{ risk }}</h2>
+
+            <h3>Health Score : {{ score }}/100</h3>
+
+            <p>
+                BMI : {{ bmi }}
+            </p>
+
+            <p>
+                BP : {{ bp }}
+            </p>
+
+            <p>
+                Sugar : {{ sugar }}
+            </p>
+
+        </div>
+
+        <div class="diet-card">
+
+            <h2>🥗 Prevention Plan</h2>
+
+            <ul>
+
+                <li>Eat Green Vegetables</li>
+
+                <li>Drink More Water</li>
+
+                <li>Daily Exercise</li>
+
+                <li>Avoid Junk Food</li>
+
+                <li>Sleep 7-8 Hours</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="history-card">
+
+        <h2>📜 Lifestyle History</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Age</th>
+
+                <th>Risk</th>
+
+                <th>Score</th>
+
+            </tr>
+
+            <tr>
+
+                <td>{{ name }}</td>
+
+                <td>{{ age }}</td>
+
+                <td>{{ risk }}</td>
+
+                <td>{{ score }}</td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
